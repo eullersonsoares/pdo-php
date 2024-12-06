@@ -15,14 +15,18 @@ class Student
         $this->birthDate = $birthDate;
     }
 
-    public function id(): ?int
+    public function defineId(int $id): void
     {
-        return $this->id;
+        if(!is_null($id)) {
+            throw new \DomainException("Só é possível definir o id uma só vez.");
+        }
+
+        $this->id = $id;
     }
 
-    public function name(): string
+    public function changeName(string $newName): void
     {
-        return $this->name;
+        $this->name = $newName;
     }
 
     public function birthDate(): \DateTimeInterface
@@ -35,5 +39,15 @@ class Student
         return $this->birthDate
             ->diff(new \DateTimeImmutable())
             ->y;
+    }
+
+    public function id():int
+    {
+        return $this->id;
+    }
+
+    public function name():string
+    {
+        return $this->name;
     }
 }

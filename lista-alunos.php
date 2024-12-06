@@ -6,6 +6,8 @@ require_once 'vendor/autoload.php';
 
 $estudantes = new StudentsRepository();
 
-var_dump($estudantes->studentsBirthAt());
+$lista = $estudantes->allStudents();
 
-
+foreach ($lista as $aluno) {
+    echo $aluno->name() . PHP_EOL;
+}
